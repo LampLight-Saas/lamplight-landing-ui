@@ -1,0 +1,79 @@
+---
+---
+
+<section id="cta" class="section bg-gradient-to-br from-primary-600 to-accent-600 text-white">
+  <div class="container-custom">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-4xl md:text-5xl font-display font-bold mb-6 animate-on-scroll">
+        Build Better APIs, Faster
+      </h2>
+      <p class="text-xl md:text-2xl mb-10 text-primary-100 animate-on-scroll">
+        Start documenting your APIs today. Free forever, no credit card required.
+      </p>
+      
+      <form class="max-w-2xl mx-auto animate-on-scroll" id="signup-form">
+        <div class="flex flex-col sm:flex-row gap-4">
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+            aria-label="Email address"
+            class="flex-1 px-6 py-4 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
+          />
+          <button
+            type="submit"
+            class="btn bg-white text-primary-700 hover:bg-gray-100 px-8 py-4 font-bold"
+          >
+            Start Free Trial
+          </button>
+        </div>
+        <p class="mt-4 text-sm text-primary-100">
+          Free forever • No credit card • 5-minute setup
+        </p>
+      </form>
+      
+      <div id="form-message" class="mt-6 hidden" role="alert"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('signup-form') as HTMLFormElement;
+  const messageDiv = document.getElementById('form-message');
+  
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(form);
+    const email = formData.get('email') as string;
+    
+    try {
+      const response = await fetch('/.netlify/functions/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      
+      const data = await response.json();
+      
+      if (messageDiv) {
+        messageDiv.classList.remove('hidden');
+        if (response.ok) {
+          messageDiv.className = 'mt-6 p-4 bg-green-100 text-green-800 rounded-lg';
+          messageDiv.textContent = data.message || 'Thank you! Check your email to confirm.';
+          form.reset();
+        } else {
+          messageDiv.className = 'mt-6 p-4 bg-red-100 text-red-800 rounded-lg';
+          messageDiv.textContent = data.error || 'Something went wrong. Please try again.';
+        }
+      }
+    } catch (error) {
+      if (messageDiv) {
+        messageDiv.classList.remove('hidden');
+        messageDiv.className = 'mt-6 p-4 bg-red-100 text-red-800 rounded-lg';
+        messageDiv.textContent = 'Network error. Please try again later.';
+      }
+    }
+  });
+</script>

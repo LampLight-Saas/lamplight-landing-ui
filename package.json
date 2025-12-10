@@ -1,0 +1,25 @@
+{
+    "name": "lamplight-landing",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "astro": "astro"
+    },
+    "dependencies": {
+        "@astrojs/check": "^0.9.6",
+        "@astrojs/netlify": "^5.5.3",
+        "@astrojs/tailwind": "^5.1.2",
+        "astro": "^4.16.17",
+        "gsap": "^3.12.5",
+        "tailwindcss": "^3.4.17"
+    },
+    "devDependencies": {
+        "@types/node": "^22.10.2",
+        "terser": "^5.44.1",
+        "typescript": "^5.9.3"
+    }
+}

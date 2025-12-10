@@ -1,0 +1,120 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+}
+
+const {
+  title = 'LampLight - Affordable API Documentation & OpenAPI Tools',
+  description = 'Create beautiful API documentation, edit OpenAPI specs, spin up mock servers, and host docs. 70% cheaper than Stoplight. Free forever plan available.',
+  image = '/images/og-image.jpg',
+  canonical = Astro.url.href,
+} = Astro.props;
+
+const siteTitle = title.includes('LampLight') ? title : `${title} | LampLight`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Primary Meta Tags -->
+    <title>{siteTitle}</title>
+    <meta name="title" content={siteTitle} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={siteTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonical} />
+    <meta property="twitter:title" content={siteTitle} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0ea5e9" />
+    
+    <!-- Accessibility -->
+    <meta name="color-scheme" content="light" />
+    
+    <!-- Security -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body>
+    <!-- Skip to main content for screen readers -->
+    <a href="#main-content" class="skip-to-main">
+      Skip to main content
+    </a>
+    
+    <slot />
+    
+    <!-- GSAP Core -->
+    <script>
+      import gsap from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+      
+      gsap.registerPlugin(ScrollTrigger);
+      
+      // Fade in animations on scroll
+      const initScrollAnimations = () => {
+        gsap.utils.toArray('.animate-on-scroll').forEach((element: any) => {
+          gsap.from(element, {
+            scrollTrigger: {
+              trigger: element,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse',
+            },
+            opacity: 0,
+            y: 50,
+            duration: 0.8,
+            ease: 'power3.out',
+          });
+        });
+        
+        // Stagger animations for groups
+        gsap.utils.toArray('.stagger-group').forEach((group: any) => {
+          const items = group.querySelectorAll('.stagger-item');
+          gsap.from(items, {
+            scrollTrigger: {
+              trigger: group,
+              start: 'top 80%',
+              toggleActions: 'play none none reverse',
+            },
+            opacity: 0,
+            y: 30,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: 'power2.out',
+          });
+        });
+      };
+      
+      // Initialize animations when DOM is ready
+      document.addEventListener('DOMContentLoaded', initScrollAnimations);
+    </script>
+  </body>
+</html>

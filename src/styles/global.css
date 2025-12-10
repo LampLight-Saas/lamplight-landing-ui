@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans antialiased text-gray-900 bg-white;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display font-bold;
+  }
+
+  /* Focus styles for accessibility */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary-500 rounded;
+  }
+
+  /* Skip to main content link for screen readers */
+  .skip-to-main {
+    @apply absolute -top-96 left-0 bg-primary-600 text-white px-6 py-3 rounded-br-lg z-50;
+    @apply focus:top-0 transition-all;
+  }
+}
+
+@layer components {
+  /* Button Styles */
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-300;
+    @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
+  }
+
+  .btn-primary {
+    @apply bg-primary-600 text-white hover:bg-primary-700 focus-visible:outline-primary-600;
+    @apply shadow-lg shadow-primary-500/30 hover:shadow-xl hover:shadow-primary-600/40;
+    @apply transform hover:-translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-primary-700 border-2 border-primary-600 hover:bg-primary-50;
+    @apply focus-visible:outline-primary-600;
+  }
+
+  .btn-accent {
+    @apply bg-gradient-to-r from-accent-500 to-primary-500 text-white;
+    @apply shadow-lg shadow-accent-500/30 hover:shadow-xl hover:shadow-accent-600/40;
+    @apply transform hover:-translate-y-0.5 focus-visible:outline-accent-600;
+  }
+
+  /* Card Styles */
+  .card {
+    @apply bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300;
+    @apply border border-gray-100;
+  }
+
+  .card-glass {
+    @apply bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg;
+    @apply border border-white/20;
+  }
+
+  /* Section Styles */
+  .section {
+    @apply py-20 md:py-28;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-accent-500;
+  }
+}
+
+@layer utilities {
+  /* Glass morphism utility */
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  /* Smooth gradient backgrounds */
+  .bg-gradient-radial {
+    background: radial-gradient(
+      ellipse at center,
+      theme('colors.primary.50') 0%,
+      theme('colors.white') 50%
+    );
+  }
+}

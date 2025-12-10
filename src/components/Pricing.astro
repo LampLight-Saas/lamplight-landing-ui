@@ -1,0 +1,159 @@
+---
+const plans = [
+  {
+    name: 'Free Forever',
+    price: '$0',
+    period: '/month',
+    description: 'Perfect for developers and small teams exploring API documentation.',
+    features: [
+      'Up to 3 API projects',
+      '1 GB storage',
+      'OpenAPI 3.0/3.1 support',
+      'Mock server (1000 requests/mo)',
+      'Community support',
+      'Public documentation',
+    ],
+    cta: 'Get Started Free',
+    highlight: false,
+  },
+  {
+    name: 'Professional',
+    price: '$29',
+    period: '/month',
+    description: 'For growing teams that need advanced features and collaboration.',
+    features: [
+      'Unlimited API projects',
+      '50 GB storage',
+      'Custom domains',
+      'Mock server (unlimited)',
+      'Priority email support',
+      'Private documentation',
+      'Team collaboration (5 users)',
+      'Version history',
+      'GitHub/GitLab sync',
+    ],
+    cta: 'Start 14-Day Trial',
+    highlight: true,
+  },
+  {
+    name: 'Enterprise',
+    price: 'Custom',
+    period: '',
+    description: 'For organizations with compliance and scale requirements.',
+    features: [
+      'Everything in Professional',
+      'Unlimited team members',
+      'Unlimited storage',
+      'SSO & SAML',
+      '24/7 dedicated support',
+      'SLA guarantee (99.9%)',
+      'On-premise deployment option',
+      'Custom integrations',
+      'Dedicated account manager',
+    ],
+    cta: 'Contact Sales',
+    highlight: false,
+  },
+];
+---
+
+<section id="pricing" class="section bg-white">
+  <div class="container-custom">
+    <!-- Section Header -->
+    <div class="max-w-3xl mx-auto text-center mb-16 animate-on-scroll">
+      <h2 class="text-4xl md:text-5xl font-display font-bold mb-6 text-gray-900">
+        Start Free, <span class="gradient-text">Scale Smart</span>
+      </h2>
+      <p class="text-xl text-gray-600">
+        70% more affordable than Stoplight. Free forever plan with no credit card required.
+      </p>
+    </div>
+    
+    <!-- Pricing Cards -->
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto stagger-group">
+      {plans.map((plan) => (
+        <div 
+          class={`card p-8 flex flex-col ${plan.highlight ? 'ring-2 ring-primary-500 shadow-2xl scale-105 md:scale-110' : ''} stagger-item`}
+        >
+          {plan.highlight && (
+            <div class="bg-gradient-to-r from-primary-500 to-accent-500 text-white text-sm font-bold px-4 py-1 rounded-full mb-4 text-center -mt-12 mx-auto">
+              Most Popular
+            </div>
+          )}
+          
+          <!-- Plan Header -->
+          <div class="text-center mb-6">
+            <h3 class="text-2xl font-display font-bold mb-2 text-gray-900">
+              {plan.name}
+            </h3>
+            <p class="text-gray-600 text-sm mb-4">
+              {plan.description}
+            </p>
+            <div class="flex items-baseline justify-center">
+              <span class="text-5xl font-display font-extrabold gradient-text">
+                {plan.price}
+              </span>
+              {plan.period && (
+                <span class="text-gray-500 ml-2">{plan.period}</span>
+              )}
+            </div>
+          </div>
+          
+          <!-- Features List -->
+          <ul class="space-y-4 mb-8 flex-grow">
+            {plan.features.map((feature) => (
+              <li class="flex items-start">
+                <svg 
+                  class="w-6 h-6 text-primary-500 mr-3 flex-shrink-0" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="text-gray-700">{feature}</span>
+              </li>
+            ))}
+          </ul>
+          
+          <!-- CTA Button -->
+          <a 
+            href="#cta" 
+            class={`btn w-full text-center ${plan.highlight ? 'btn-accent' : 'btn-primary'}`}
+          >
+            {plan.cta}
+          </a>
+        </div>
+      ))}
+    </div>
+    
+    <!-- Additional Info -->
+    <div class="mt-16 text-center animate-on-scroll">
+      <p class="text-gray-600 mb-4">
+        Start with our <strong class="text-primary-600">Free Forever</strong> plan. 
+        No credit card required. Upgrade anytime.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
+        <div class="flex items-center">
+          <svg class="w-5 h-5 text-primary-500 mr-2" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+          No hidden fees
+        </div>
+        <div class="flex items-center">
+          <svg class="w-5 h-5 text-primary-500 mr-2" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+          Cancel anytime
+        </div>
+        <div class="flex items-center">
+          <svg class="w-5 h-5 text-primary-500 mr-2" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+          Migration assistance
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
