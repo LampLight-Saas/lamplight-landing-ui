@@ -10,7 +10,7 @@
   }
 
   body {
-    @apply font-sans antialiased text-gray-900 bg-white;
+    @apply font-sans antialiased text-gray-900 bg-white dark:text-gray-100 dark:bg-gray-950;
   }
 
   h1,
@@ -48,7 +48,7 @@
   }
 
   .btn-secondary {
-    @apply bg-white text-primary-700 border-2 border-primary-600 hover:bg-primary-50;
+    @apply bg-white text-primary-700 border-2 border-primary-600 hover:bg-primary-50 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700;
     @apply focus-visible:outline-primary-600;
   }
 
@@ -60,13 +60,13 @@
 
   /* Card Styles */
   .card {
-    @apply bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300;
-    @apply border border-gray-100;
+    @apply bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 dark:bg-gray-900;
+    @apply border border-gray-100 dark:border-gray-800;
   }
 
   .card-glass {
-    @apply bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg;
-    @apply border border-white/20;
+    @apply bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg dark:bg-white/10;
+    @apply border border-white/20 dark:border-white/10;
   }
 
   /* Section Styles */
@@ -80,7 +80,7 @@
 
   /* Gradient Text */
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-accent-500;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-accent-500 dark:from-primary-400 dark:to-accent-400;
   }
 }
 
@@ -99,6 +99,14 @@
       ellipse at center,
       theme('colors.primary.50') 0%,
       theme('colors.white') 50%
+    );
+  }
+
+  .dark .bg-gradient-radial {
+    background: radial-gradient(
+      ellipse at center,
+      theme('colors.gray.900') 0%,
+      theme('colors.gray.950') 50%
     );
   }
 

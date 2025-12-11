@@ -68,6 +68,24 @@ const siteTitle = title.includes('LampLight') ? title : `${title} | LampLight`;
     <slot />
     
     <script type="module">
+      const applyTheme = (theme) => {
+        const root = document.documentElement;
+        if (theme === 'dark') root.classList.add('dark'); else root.classList.remove('dark');
+      };
+      const getStoredTheme = () => localStorage.getItem('theme');
+      const getSystemPref = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      const initTheme = () => {
+        const stored = getStoredTheme();
+        const theme = stored ? stored : getSystemPref();
+        applyTheme(theme);
+        window.addEventListener('storage', (e) => { if (e.key === 'theme' && e.newValue) applyTheme(e.newValue); });
+        window.addEventListener('toggle-theme', () => {
+          const next = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+          localStorage.setItem('theme', next);
+          applyTheme(next);
+        });
+      };
+      document.addEventListener('DOMContentLoaded', initTheme);
       const addVisible = (el) => el.classList.add('animate-visible');
       const initAnimations = () => {
         const animated = Array.from(document.querySelectorAll('.animate-on-scroll, .stagger-item'));

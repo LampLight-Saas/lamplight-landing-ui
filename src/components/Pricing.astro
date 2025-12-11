@@ -60,14 +60,14 @@ const plans = [
 ];
 ---
 
-<section id="pricing" class="section bg-white">
+<section id="pricing" class="section bg-white dark:bg-gray-950">
   <div class="container-custom">
     <!-- Section Header -->
     <div class="max-w-3xl mx-auto text-center mb-16 animate-on-scroll">
-      <h2 class="text-4xl md:text-5xl font-display font-bold mb-6 text-gray-900">
+      <h2 class="text-4xl md:text-5xl font-display font-bold mb-6 text-gray-900 dark:text-gray-100">
         Start Free, <span class="gradient-text">Scale Smart</span>
       </h2>
-      <p class="text-xl text-gray-600">
+      <p class="text-xl text-gray-600 dark:text-gray-400">
         70% more affordable than Stoplight. Free forever plan with no credit card required.
       </p>
     </div>
@@ -86,10 +86,10 @@ const plans = [
           
           <!-- Plan Header -->
           <div class="text-center mb-6">
-            <h3 class="text-2xl font-display font-bold mb-2 text-gray-900">
+            <h3 class="text-2xl font-display font-bold mb-2 text-gray-900 dark:text-gray-100">
               {plan.name}
             </h3>
-            <p class="text-gray-600 text-sm mb-4">
+            <p class="text-gray-600 text-sm mb-4 dark:text-gray-400">
               {plan.description}
             </p>
             <div class="flex items-baseline justify-center">
@@ -97,7 +97,7 @@ const plans = [
                 {plan.price}
               </span>
               {plan.period && (
-                <span class="text-gray-500 ml-2">{plan.period}</span>
+                <span class="text-gray-500 ml-2 dark:text-gray-400">{plan.period}</span>
               )}
             </div>
           </div>
@@ -115,7 +115,7 @@ const plans = [
                 >
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
-                <span class="text-gray-700">{feature}</span>
+                <span class="text-gray-700 dark:text-gray-300">{feature}</span>
               </li>
             ))}
           </ul>
@@ -133,11 +133,11 @@ const plans = [
     
     <!-- Additional Info -->
     <div class="mt-16 text-center animate-on-scroll">
-      <p class="text-gray-600 mb-4">
+      <p class="text-gray-600 mb-4 dark:text-gray-400">
         Start with our <strong class="text-primary-600">Free Forever</strong> plan. 
         No credit card required. Upgrade anytime.
       </p>
-      <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
+      <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500 dark:text-gray-400">
         <div class="flex items-center">
           <svg class="w-5 h-5 text-primary-500 mr-2" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />

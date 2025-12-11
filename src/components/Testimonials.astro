@@ -24,14 +24,14 @@ const testimonials = [
 ];
 ---
 
-<section id="testimonials" class="section bg-gradient-to-br from-primary-50 to-accent-50">
+<section id="testimonials" class="section bg-gradient-to-br from-primary-50 to-accent-50 dark:from-gray-900 dark:to-gray-950">
   <div class="container-custom">
     <!-- Section Header -->
     <div class="max-w-3xl mx-auto text-center mb-16 animate-on-scroll">
-      <h2 class="text-4xl md:text-5xl font-display font-bold mb-6 text-gray-900">
+      <h2 class="text-4xl md:text-5xl font-display font-bold mb-6 text-gray-900 dark:text-gray-100">
         Trusted by <span class="gradient-text">Developers</span>
       </h2>
-      <p class="text-xl text-gray-600">
+      <p class="text-xl text-gray-600 dark:text-gray-400">
         See why teams are switching from Stoplight and Redocly to LampLight.
       </p>
     </div>
@@ -48,7 +48,7 @@ const testimonials = [
           </div>
           
           <blockquote class="mb-6">
-            <p class="text-gray-700 leading-relaxed italic">
+            <p class="text-gray-700 leading-relaxed italic dark:text-gray-300">
               "{testimonial.quote}"
             </p>
           </blockquote>
@@ -58,8 +58,8 @@ const testimonials = [
               {testimonial.avatar}
             </div>
             <div>
-              <div class="font-bold text-gray-900">{testimonial.author}</div>
-              <div class="text-sm text-gray-600">{testimonial.role}</div>
+              <div class="font-bold text-gray-900 dark:text-gray-100">{testimonial.author}</div>
+              <div class="text-sm text-gray-600 dark:text-gray-400">{testimonial.role}</div>
             </div>
           </div>
         </div>
