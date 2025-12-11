@@ -1,24 +1,25 @@
-FROM node:20-alpine AS builder
+# Stage 1: Build the application
+FROM node:20-alpine AS build
+
 WORKDIR /app
 
-# Install deps
-COPY package.json package-lock.json* ./
-RUN npm ci || npm install
+COPY package*.json ./
 
-# Copy source and build
+RUN npm ci
+
 COPY . .
+
 RUN npm run build
 
-# --- Runtime stage ---
-FROM node:20-alpine AS runner
-WORKDIR /app
+# Stage 2: Serve the application with Nginx
+FROM nginx:alpine
 
-# Copy built assets
-COPY --from=builder /app/dist ./dist
+# Copy the build output from the previous stage
+COPY --from=build /app/dist /usr/share/nginx/html
 
-# Use a lightweight static server via npx (no extra deps)
-ENV PORT=8000
-EXPOSE 8000
+# Copy custom Nginx configuration
+COPY nginx.conf /etc/nginx/nginx.conf
 
-CMD ["sh", "-c", "npx serve -s dist -l 0.0.0.0:${PORT}"]
+EXPOSE 80
 
+CMD ["nginx", "-g", "daemon off;"]
