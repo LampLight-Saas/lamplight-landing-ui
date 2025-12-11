@@ -3,9 +3,9 @@ FROM node:20-alpine AS build
 
 WORKDIR /app
 
-COPY package*.json ./
-
-RUN npm ci
+COPY package.json package-lock.json* ./
+# Use npm ci when lockfile exists; fallback to npm install to avoid CI failure
+RUN sh -c 'if [ -f package-lock.json ]; then npm ci --no-audit --no-fund; else npm install --no-audit --no-fund; fi'
 
 COPY . .
 
