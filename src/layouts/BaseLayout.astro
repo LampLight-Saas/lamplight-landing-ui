@@ -72,49 +72,30 @@ const siteTitle = title.includes('LampLight') ? title : `${title} | LampLight`;
     
     <slot />
     
-    <!-- GSAP Core -->
-    <script>
-      import gsap from 'gsap';
-      import { ScrollTrigger } from 'gsap/ScrollTrigger';
-      
-      gsap.registerPlugin(ScrollTrigger);
-      
-      // Fade in animations on scroll
-      const initScrollAnimations = () => {
-        gsap.utils.toArray('.animate-on-scroll').forEach((element: any) => {
-          gsap.from(element, {
-            scrollTrigger: {
-              trigger: element,
-              start: 'top 85%',
-              toggleActions: 'play none none reverse',
-            },
-            opacity: 0,
-            y: 50,
-            duration: 0.8,
-            ease: 'power3.out',
-          });
-        });
-        
-        // Stagger animations for groups
-        gsap.utils.toArray('.stagger-group').forEach((group: any) => {
-          const items = group.querySelectorAll('.stagger-item');
-          gsap.from(items, {
-            scrollTrigger: {
-              trigger: group,
-              start: 'top 80%',
-              toggleActions: 'play none none reverse',
-            },
-            opacity: 0,
-            y: 30,
-            duration: 0.6,
-            stagger: 0.1,
-            ease: 'power2.out',
-          });
-        });
+    <script type="module">
+      const addVisible = (el) => el.classList.add('animate-visible');
+      const initAnimations = () => {
+        const animated = Array.from(document.querySelectorAll('.animate-on-scroll, .stagger-item'));
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReduced) {
+          animated.forEach(addVisible);
+          return;
+        }
+        if ('IntersectionObserver' in window) {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                addVisible(entry.target);
+                observer.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
+          animated.forEach((el) => observer.observe(el));
+        } else {
+          animated.forEach(addVisible);
+        }
       };
-      
-      // Initialize animations when DOM is ready
-      document.addEventListener('DOMContentLoaded', initScrollAnimations);
+      document.addEventListener('DOMContentLoaded', initAnimations);
     </script>
   </body>
 </html>

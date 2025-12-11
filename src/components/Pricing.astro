@@ -14,6 +14,7 @@ const plans = [
       'Public documentation',
     ],
     cta: 'Get Started Free',
+    href: '#cta',
     highlight: false,
   },
   {
@@ -33,6 +34,7 @@ const plans = [
       'GitHub/GitLab sync',
     ],
     cta: 'Start 14-Day Trial',
+    href: '#cta',
     highlight: true,
   },
   {
@@ -52,6 +54,7 @@ const plans = [
       'Dedicated account manager',
     ],
     cta: 'Contact Sales',
+    href: 'mailto:sales@lamplight.dev',
     highlight: false,
   },
 ];
@@ -119,7 +122,7 @@ const plans = [
           
           <!-- CTA Button -->
           <a 
-            href="#cta" 
+            href={plan.href}
             class={`btn w-full text-center ${plan.highlight ? 'btn-accent' : 'btn-primary'}`}
           >
             {plan.cta}

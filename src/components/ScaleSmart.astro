@@ -1,0 +1,293 @@
+---
+const apis = [
+  { name: 'OpenAPI 3.1', color: 'from-primary-500 to-primary-600', short: 'OAS 3.1' },
+  { name: 'Swagger 2.0', color: 'from-accent-500 to-accent-600', short: 'Swagger' },
+  { name: 'Postman', color: 'from-emerald-500 to-emerald-600', short: 'Postman' },
+  { name: 'GraphQL', color: 'from-purple-500 to-purple-600', short: 'GraphQL' },
+];
+
+const docFormats = [
+  { name: 'Markdown (MDX)', compatible: ['OAS', 'Swagger'], icon: '📝' },
+  { name: 'HTML/Static', compatible: ['OAS', 'Swagger', 'Postman'], icon: '📄' },
+  { name: 'Redoc', compatible: ['OAS', 'Swagger'], icon: '📘' },
+  { name: 'Stoplight', compatible: ['OAS'], icon: '📗' },
+];
+---
+
+<section id="scale-smart" class="section bg-gray-950 text-white relative overflow-hidden">
+  <div class="container-custom">
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-display font-bold mb-4">
+        Start Free, <span class="gradient-text">Scale Smart</span>
+      </h2>
+      <p class="text-lg text-gray-400">Convert popular API definitions into polished docs with a single click.</p>
+    </div>
+
+    <div class="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto relative gap-8 md:gap-0">
+      <!-- Connecting Line (Desktop) -->
+      <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-800 -z-10 transform -translate-y-1/2"></div>
+
+      <!-- Left Panel: Input -->
+      <div class="w-full md:w-1/3 bg-gray-900/80 backdrop-blur-xl border border-gray-800 rounded-2xl p-6 z-10 shadow-2xl relative group" id="left-panel">
+        <h3 class="text-gray-500 text-xs font-bold uppercase tracking-widest mb-6">Your Machine / Repo</h3>
+        <div class="space-y-3 will-change-transform" id="api-list">
+          {apis.map((api) => (
+            <div
+              class={`api-badge w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 hover:border-gray-600 transition-all duration-300 flex items-center justify-between group-hover:shadow-lg`} 
+              title={api.name}
+              data-api={api.short}
+            >
+              <div class="flex items-center space-x-3">
+                 <div class={`w-2 h-2 rounded-full bg-gradient-to-r ${api.color}`}></div>
+                 <span class="font-medium text-gray-300 text-sm">{api.name}</span>
+              </div>
+              <span class="text-[10px] text-gray-500 font-mono">local</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Center: Control -->
+      <div class="relative z-20">
+        <button
+          id="pipeline-button"
+          class="relative group btn px-8 py-3 rounded-full bg-gray-900 border border-gray-700 text-white font-medium hover:border-primary-500 transition-all duration-300 shadow-xl overflow-hidden"
+          aria-label="Start transformation"
+        >
+          <span class="relative z-10 flex items-center">
+            <span id="btn-text">Start Transformation</span>
+            <svg id="btn-icon" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </span>
+          <div class="absolute inset-0 bg-gradient-to-r from-primary-600/20 to-accent-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </button>
+        <div id="particles" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[100px] pointer-events-none -z-10"></div>
+      </div>
+
+      <!-- Right Panel: Output -->
+      <div class="w-full md:w-1/3 bg-gray-900/80 backdrop-blur-xl border border-gray-800 rounded-2xl p-6 z-10 shadow-2xl min-h-[320px] flex flex-col" id="right-panel">
+        <h3 class="text-gray-500 text-xs font-bold uppercase tracking-widest mb-6">LampLight Cloud</h3>
+        <div id="docs-list" class="space-y-3 will-change-transform flex-grow">
+          {docFormats.map((fmt) => (
+            <div class="doc-card opacity-0 translate-x-4 p-3 rounded-lg bg-gray-800/50 border border-gray-700/50 flex items-center justify-between">
+              <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded bg-gradient-to-br from-primary-900/50 to-accent-900/50 border border-white/5 flex items-center justify-center text-sm" aria-hidden="true">{fmt.icon}</div>
+                <div>
+                  <div class="font-medium text-sm text-gray-200">{fmt.name}</div>
+                  <div class="text-[10px] text-gray-500">Hosted</div>
+                </div>
+              </div>
+              <div class="w-2 h-2 rounded-full bg-green-500/50 shadow-[0_0_8px_rgba(34,197,94,0.4)]"></div>
+            </div>
+          ))}
+        </div>
+        
+        <!-- Empty State Placeholder -->
+        <div id="empty-state" class="absolute inset-0 flex flex-col items-center justify-center text-gray-700 pointer-events-none p-6 text-center">
+          <svg class="w-12 h-12 mb-3 opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+          <span class="text-xs font-mono opacity-50">Waiting for input...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .particle { width: 8px; height: 8px; border-radius: 9999px; filter: blur(1px); will-change: transform; }
+    .clone-token { position: absolute; pointer-events: none; z-index: 30; will-change: transform; }
+  </style>
+
+  <script>
+    import gsap from 'gsap';
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const pulse = (apiBadges: HTMLElement[]) => {
+      if (prefersReduced) return;
+      gsap.to(apiBadges, {
+        scale: 1.02,
+        borderColor: 'rgba(14, 165, 233, 0.5)',
+        duration: 0.8,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut',
+        stagger: { each: 0.2, from: 'random' },
+      });
+    };
+
+    const spawnParticles = (particlesHost: HTMLElement) => {
+      if (prefersReduced) return;
+      // Clear previous particles
+      particlesHost.innerHTML = '';
+      
+      const count = 20;
+      for (let i = 0; i < count; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'particle';
+        // Random colors: blue, purple, white
+        const colors = ['rgba(14,165,233,0.8)', 'rgba(139,92,246,0.8)', 'rgba(255,255,255,0.6)'];
+        dot.style.background = colors[Math.floor(Math.random() * colors.length)];
+        dot.style.width = Math.random() * 4 + 2 + 'px';
+        dot.style.height = dot.style.width;
+        
+        particlesHost.appendChild(dot);
+        
+        // Start from center left, move to center right
+        gsap.set(dot, { 
+          x: -100, 
+          y: (Math.random() - 0.5) * 20, 
+          opacity: 0, 
+          force3D: true 
+        });
+        
+        gsap.to(dot, {
+          x: 100,
+          opacity: 1,
+          keyframes: [
+            { opacity: 1, offset: 0.2 },
+            { opacity: 0, offset: 1 }
+          ],
+          duration: 0.8 + Math.random() * 0.5,
+          ease: 'power1.out',
+          delay: i * 0.03,
+          onComplete: () => dot.remove(),
+        });
+      }
+    };
+
+    const parallax = (root: HTMLElement) => {
+      if (prefersReduced) return;
+      const setLeft = gsap.quickSetter('#left-panel', 'transform');
+      const setRight = gsap.quickSetter('#right-panel', 'transform');
+      
+      let rect = root.getBoundingClientRect();
+      const updateRect = () => { rect = root.getBoundingClientRect(); };
+      window.addEventListener('resize', updateRect);
+      window.addEventListener('scroll', updateRect); // Update on scroll too
+      
+      root.addEventListener('mousemove', (e: MouseEvent) => {
+        const nx = (e.clientX - rect.left) / rect.width - 0.5;
+        const ny = (e.clientY - rect.top) / rect.height - 0.5;
+        
+        // Subtle 3D tilt effect
+        const tiltX = ny * 2; // deg
+        const tiltY = nx * -2; // deg
+        
+        setLeft(`perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(0)`);
+        setRight(`perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(0)`);
+      });
+      
+      root.addEventListener('mouseleave', () => {
+         gsap.to('#left-panel', { rotationX: 0, rotationY: 0, duration: 0.5 });
+         gsap.to('#right-panel', { rotationX: 0, rotationY: 0, duration: 0.5 });
+      });
+    };
+
+    const animateDocsIn = (docs: HTMLElement[]) => {
+      gsap.fromTo(docs, 
+        { opacity: 0, x: 20 }, 
+        { opacity: 1, x: 0, duration: 0.5, ease: 'back.out(1.2)', stagger: 0.1 }
+      );
+    };
+
+    const createCloneFor = (badge: HTMLElement) => {
+      const rect = badge.getBoundingClientRect();
+      const clone = badge.cloneNode(true) as HTMLElement;
+      clone.classList.add('clone-token');
+      // Simplify clone for travel (remove border/bg, make it a glowing pill)
+      clone.style.width = rect.width + 'px';
+      clone.style.height = rect.height + 'px';
+      clone.style.boxShadow = '0 0 15px rgba(56, 189, 248, 0.5)';
+      clone.style.zIndex = '50';
+      
+      document.body.appendChild(clone);
+      gsap.set(clone, { left: rect.left, top: rect.top, margin: 0 });
+      return clone;
+    };
+
+    const getRightPanelTarget = (index: number, docs: HTMLElement[]) => {
+      // Target specific doc items if possible, or just the container center
+      const target = docs[Math.min(index, docs.length - 1)];
+      const r = target.getBoundingClientRect();
+      return { x: r.left, y: r.top };
+    };
+
+    const init = () => {
+      const root = document.getElementById('scale-smart') as HTMLElement | null;
+      const button = document.getElementById('pipeline-button') as HTMLButtonElement | null;
+      const btnText = document.getElementById('btn-text');
+      const particlesHost = document.getElementById('particles') as HTMLElement | null;
+      const apiBadges = Array.from(document.querySelectorAll('.api-badge')) as HTMLElement[];
+      const docs = Array.from(document.querySelectorAll('.doc-card')) as HTMLElement[];
+      const emptyState = document.getElementById('empty-state');
+
+      if (!root || !button || !particlesHost) return;
+
+      pulse(apiBadges);
+      parallax(root);
+      docs.forEach((d) => gsap.set(d, { opacity: 0, x: 20 })); // Initial hidden state
+      button.dataset.state = 'idle';
+      
+      const runPipeline = () => {
+        if (button.dataset.state === 'running') return;
+        button.dataset.state = 'running';
+        button.disabled = true;
+        if(btnText) btnText.textContent = 'Transforming...';
+        
+        // Hide empty state
+        if(emptyState) gsap.to(emptyState, { opacity: 0, scale: 0.9, duration: 0.3 });
+        
+        spawnParticles(particlesHost);
+
+        const tl = gsap.timeline();
+        apiBadges.forEach((badge, i) => {
+           const clone = createCloneFor(badge);
+           const target = getRightPanelTarget(i, docs);
+           const startRect = badge.getBoundingClientRect();
+           
+           // Initial state
+           gsap.set(clone, { x: 0, y: 0 });
+
+           const deltaX = target.x - startRect.left;
+           const deltaY = target.y - startRect.top;
+
+           tl.to(clone, {
+             x: deltaX,
+             y: deltaY,
+             keyframes: [
+               { percent: 0, scale: 1, opacity: 1 },
+               { percent: 50, scale: 0.5, opacity: 0.5 },
+               { percent: 100, scale: 1, opacity: 0 }
+             ],
+             duration: 0.8,
+             ease: 'power3.inOut',
+             onComplete: () => clone.remove()
+           }, i * 0.1);
+        });
+
+        // Trigger docs appearing slightly before clones arrive
+        setTimeout(() => animateDocsIn(docs), 600);
+
+        setTimeout(() => {
+          button.disabled = false;
+          if(btnText) btnText.textContent = 'Reset Demo';
+          button.dataset.state = 'done';
+        }, 1500);
+      };
+
+      const reset = () => {
+        docs.forEach((d) => gsap.set(d, { opacity: 0, x: 20 }));
+        if(btnText) btnText.textContent = 'Start Transformation';
+        if(emptyState) gsap.to(emptyState, { opacity: 1, scale: 1, duration: 0.3, delay: 0.2 });
+        button.dataset.state = 'idle';
+      };
+
+      button.addEventListener('click', () => {
+        if (prefersReduced) { animateDocsIn(docs); return; }
+        if (button.dataset.state === 'done') { reset(); return; }
+        runPipeline();
+      });
+    };
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</section>

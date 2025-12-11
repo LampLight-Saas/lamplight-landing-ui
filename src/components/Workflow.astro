@@ -1,0 +1,120 @@
+---
+const steps = [
+  {
+    step: '01',
+    title: 'Import Your Spec',
+    description: 'Upload your OpenAPI (Swagger) file, Postman collection, or simply paste a URL. We parse it instantly.',
+    icon: 'M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12'
+  },
+  {
+    step: '02',
+    title: 'Customize & Preview',
+    description: 'Use our visual editor to add descriptions, examples, and authentication guides. Preview changes in real-time.',
+    icon: 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'
+  },
+  {
+    step: '03',
+    title: 'Publish & Host',
+    description: 'Deploy to a custom domain with one click. We handle hosting, SSL, and CDN distribution for you.',
+    icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4'
+  }
+];
+---
+
+<section id="workflow" class="section bg-white overflow-hidden">
+  <div class="container-custom">
+    <!-- Section Header -->
+    <div class="max-w-3xl mx-auto text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-display font-bold mb-6 text-gray-900">
+        From Spec to Site in <span class="gradient-text">Minutes</span>
+      </h2>
+      <p class="text-xl text-gray-600">
+        Turn your raw API definitions into a developer experience your users will love.
+      </p>
+    </div>
+
+    <!-- Visual Workflow -->
+    <div class="relative">
+      <!-- Connection Line (Desktop) -->
+      <div class="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-gradient-to-r from-primary-100 via-accent-100 to-primary-100 -z-10"></div>
+
+      <div class="grid md:grid-cols-3 gap-12">
+        {steps.map((item) => (
+          <div class="relative bg-white p-6 rounded-2xl border border-gray-100 shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:shadow-primary-500/10 transition-all duration-300 group">
+            <!-- Step Number -->
+            <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-white px-4 py-1 rounded-full border border-gray-100 shadow-sm text-sm font-bold text-primary-600">
+              Step {item.step}
+            </div>
+
+            <!-- Icon -->
+            <div class="w-16 h-16 mx-auto bg-gradient-to-br from-primary-50 to-accent-50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={item.icon} />
+              </svg>
+            </div>
+
+            <h3 class="text-xl font-bold text-center mb-3 text-gray-900">{item.title}</h3>
+            <p class="text-gray-600 text-center leading-relaxed">
+              {item.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Visual Example: Code to Docs -->
+    <div class="mt-24 bg-gray-900 rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/10">
+      <div class="grid md:grid-cols-2">
+        <!-- Input: JSON/YAML -->
+        <div class="p-8 border-b md:border-b-0 md:border-r border-gray-800">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-mono text-gray-400">openapi.yaml</span>
+            <span class="px-2 py-1 rounded bg-gray-800 text-xs text-gray-400">Input</span>
+          </div>
+          <pre class="font-mono text-sm text-blue-300 overflow-x-auto"><code>openapi: 3.0.0
+info:
+  title: LampLight API
+  version: 1.0.0
+paths:
+  /users:
+    get:
+      summary: List users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'</code></pre>
+        </div>
+
+        <!-- Output: Preview -->
+        <div class="bg-white p-8">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-sans font-bold text-gray-900">Preview</span>
+            <span class="px-2 py-1 rounded bg-green-100 text-xs text-green-700">Output</span>
+          </div>
+          <div class="space-y-4">
+            <div class="flex items-center space-x-2">
+              <span class="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs font-bold font-mono">GET</span>
+              <span class="font-mono text-sm text-gray-700">/users</span>
+            </div>
+            <h4 class="text-lg font-bold text-gray-900">List users</h4>
+            <div class="bg-gray-50 rounded p-3 border border-gray-200">
+              <div class="text-xs text-gray-500 mb-2">Response 200 (application/json)</div>
+              <div class="text-xs font-mono text-gray-700">[
+  &#123;
+    "id": 1,
+    "name": "Jane Doe",
+    "email": "jane@example.com"
+  &#125;
+]</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

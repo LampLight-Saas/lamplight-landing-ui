@@ -101,4 +101,34 @@
       theme('colors.white') 50%
     );
   }
+
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .stagger-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .animate-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-on-scroll,
+    .stagger-item {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  .will-change-transform {
+    will-change: transform;
+  }
 }

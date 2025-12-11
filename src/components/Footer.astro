@@ -3,28 +3,18 @@ const currentYear = new Date().getFullYear();
 
 const footerLinks = {
   product: [
+    { name: 'How it Works', href: '#workflow' },
     { name: 'Features', href: '#features' },
     { name: 'Pricing', href: '#pricing' },
-    { name: 'Security', href: '#' },
-    { name: 'Roadmap', href: '#' },
+    { name: 'Testimonials', href: '#testimonials' },
   ],
   company: [
-    { name: 'About', href: '#' },
     { name: 'Blog', href: '#' },
-    { name: 'Careers', href: '#' },
-    { name: 'Press', href: '#' },
-  ],
-  resources: [
-    { name: 'Documentation', href: '#' },
-    { name: 'Help Center', href: '#' },
-    { name: 'API', href: '#' },
-    { name: 'Status', href: '#' },
+    { name: 'Contact', href: 'mailto:contact@lamplight.dev' },
   ],
   legal: [
-    { name: 'Privacy', href: '#' },
-    { name: 'Terms', href: '#' },
-    { name: 'Cookie Policy', href: '#' },
-    { name: 'Licenses', href: '#' },
+    { name: 'Privacy Policy', href: '#' },
+    { name: 'Terms of Service', href: '#' },
   ],
 };
 
@@ -35,9 +25,9 @@ const socialLinks = [
 ];
 ---
 
-<footer id="contact" class="bg-gray-900 text-gray-300 pt-16 pb-8">
+<footer id="contact" class="bg-gray-950 text-gray-300 pt-20 pb-10 border-t border-gray-900">
   <div class="container-custom">
-    <div class="grid grid-cols-2 md:grid-cols-6 gap-8 mb-12">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
       <div class="col-span-2">
         <div class="flex items-center space-x-2 mb-4">
           <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-500 rounded-lg flex items-center justify-center">
@@ -47,8 +37,8 @@ const socialLinks = [
           </div>
           <span class="text-xl font-display font-bold text-white">LampLight</span>
         </div>
-        <p class="text-gray-400 mb-6">
-          Illuminate your digital future with cutting-edge solutions.
+        <p class="text-gray-400 mb-6 max-w-sm">
+          The fastest way to convert OpenAPI specs into beautiful, hosted documentation.
         </p>
         <div class="flex space-x-4">
           {socialLinks.map((social) => (
@@ -78,15 +68,6 @@ const socialLinks = [
         <h3 class="text-white font-bold mb-4">Company</h3>
         <ul class="space-y-2">
           {footerLinks.company.map((link) => (
-            <li><a href={link.href} class="hover:text-primary-400 transition-colors">{link.name}</a></li>
-          ))}
-        </ul>
-      </div>
-      
-      <div>
-        <h3 class="text-white font-bold mb-4">Resources</h3>
-        <ul class="space-y-2">
-          {footerLinks.resources.map((link) => (
             <li><a href={link.href} class="hover:text-primary-400 transition-colors">{link.name}</a></li>
           ))}
         </ul>
