@@ -60,7 +60,7 @@ const navigation = [
   
   <!-- Mobile Menu -->
   <div class="hidden md:hidden" id="mobile-menu">
-    <div class="px-4 pt-2 pb-6 space-y-1 bg-white border-t border-gray-200">
+    <div class="px-4 pt-2 pb-6 space-y-1 bg-white border-t border-gray-200 dark:bg-gray-900 dark:border-gray-800">
       {navigation.map((item) => (
         <a
           href={item.href}
@@ -72,6 +72,9 @@ const navigation = [
       <a href="#cta" class="block px-3 py-3 mt-2 btn btn-primary w-full text-center">
         Get Started
       </a>
+      <button id="theme-toggle-mobile" class="mt-2 inline-flex items-center justify-center w-full px-3 py-3 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition-colors dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800" aria-label="Toggle theme">
+        Toggle Theme
+      </button>
     </div>
   </div>
 </nav>
@@ -115,6 +118,11 @@ const navigation = [
 
   const themeToggle = document.getElementById('theme-toggle');
   themeToggle?.addEventListener('click', () => {
+    window.dispatchEvent(new Event('toggle-theme'));
+  });
+
+  const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+  themeToggleMobile?.addEventListener('click', () => {
     window.dispatchEvent(new Event('toggle-theme'));
   });
 </script>

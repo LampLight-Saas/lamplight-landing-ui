@@ -55,7 +55,22 @@ const siteTitle = title.includes('LampLight') ? title : `${title} | LampLight`;
     <meta name="theme-color" content="#0ea5e9" />
     
     <!-- Accessibility -->
-    <meta name="color-scheme" content="light" />
+    <meta name="color-scheme" content="light dark" />
+
+    <script>
+      (function() {
+        try {
+          var stored = localStorage.getItem('theme');
+          var system = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          var theme = stored || system;
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
     
     <!-- Styles are imported via Astro frontmatter to include Tailwind build output -->
   </head>

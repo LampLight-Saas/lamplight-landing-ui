@@ -62,59 +62,6 @@ const steps = [
       </div>
     </div>
 
-    <!-- Visual Example: Code to Docs -->
-    <div class="mt-24 bg-gray-900 rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/10">
-      <div class="grid md:grid-cols-2">
-        <!-- Input: JSON/YAML -->
-        <div class="p-8 border-b md:border-b-0 md:border-r border-gray-800">
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-mono text-gray-400">openapi.yaml</span>
-            <span class="px-2 py-1 rounded bg-gray-800 text-xs text-gray-400">Input</span>
-          </div>
-          <pre class="font-mono text-sm text-blue-300 overflow-x-auto"><code>openapi: 3.0.0
-info:
-  title: LampLight API
-  version: 1.0.0
-paths:
-  /users:
-    get:
-      summary: List users
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/User'</code></pre>
-        </div>
-
-        <!-- Output: Preview -->
-        <div class="bg-white p-8 dark:bg-gray-900">
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-sans font-bold text-gray-900 dark:text-gray-100">Preview</span>
-            <span class="px-2 py-1 rounded bg-green-100 text-xs text-green-700 dark:bg-green-900 dark:text-green-300">Output</span>
-          </div>
-          <div class="space-y-4">
-            <div class="flex items-center space-x-2">
-              <span class="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs font-bold font-mono dark:bg-blue-900 dark:text-blue-300">GET</span>
-              <span class="font-mono text-sm text-gray-700 dark:text-gray-300">/users</span>
-            </div>
-            <h4 class="text-lg font-bold text-gray-900 dark:text-gray-100">List users</h4>
-            <div class="bg-gray-50 rounded p-3 border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-              <div class="text-xs text-gray-500 mb-2 dark:text-gray-400">Response 200 (application/json)</div>
-              <div class="text-xs font-mono text-gray-700 dark:text-gray-300">[
-  &#123;
-    "id": 1,
-    "name": "Jane Doe",
-    "email": "jane@example.com"
-  &#125;
-]</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    
   </div>
 </section>
